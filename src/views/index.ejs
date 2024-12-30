@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <link rel="stylesheet" href="/stylesheets/sidebar_scroll.css">
+  <link rel="stylesheet" href="/stylesheets/cards.css">
+  <link rel="stylesheet" href="flash.css">
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- Page Layout -->
+    <div class="pt-16 flex min-h-screen relative">
+        <!-- Sidebar -->
+        <%- include('partials/sidebar') %>
+
+        <!-- Main Content -->
+        <div id="main-content" class="flex-1 bg-gray-50 p-6">
+            <%- include('partials/main-content') %>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="javascripts/sidebar.js"></script>
+</body>
+</html>

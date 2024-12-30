@@ -1,0 +1,96 @@
+<div id="sidebar-backdrop"></div>
+<div 
+    id="sidebar" 
+    class="fixed top-16 inset-y-0 left-0 w-64 md:w-1/4 bg-white shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40 md:static">
+    
+    <!-- Slider --> 
+    <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2">
+        <div class="flex justify-center flex-wrap space-x-4">
+            <a href="/products?type=buy" class="px-4 py-2 m-1 text-sm border rounded-md font-semibold <%= type === 'buy' ? 'bg-white text-blue-500' : 'bg-blue-600 hover:bg-blue-700' %>">Buy</a>
+            <a href="/products?type=lost" class="px-4 py-2  m-1 text-sm border rounded-md font-semibold <%= type === 'lost' ? 'bg-white text-blue-500' : 'bg-blue-600 hover:bg-blue-700' %>">Lost Items</a>
+            <a href="/products?type=needed" class="px-4 py-2 m-1 text-sm border rounded-md font-semibold <%= type === 'needed' ? 'bg-white text-blue-500' : 'bg-blue-600 hover:bg-blue-700' %>">Needed Items</a>
+        </div>
+    </div>
+    
+    <!-- Categories -->
+    <div class="p-4">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Categories</h2>
+        <ul class="space-y-2">
+            <li>
+                <a href="/products?type=<%= type %>&category=electronics"
+                    class="block px-4 py-2 rounded-md <%= filters?.category === 'electronics' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200' %>">
+                    Electronics
+                </a>
+            </li>
+            <li>
+                <a href="/products?type=<%= type %>&category=books"
+                    class="block px-4 py-2 rounded-md <%= filters?.category === 'books' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200' %>">
+                    Books
+                </a>
+            </li>
+            <li>
+                <a href="/products?type=<%= type %>&category=clothing"
+                    class="block px-4 py-2 rounded-md <%= filters?.category === 'clothing' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200' %>">
+                    Clothing
+                </a>
+            </li>
+            <li>
+                <a href="/products?type=<%= type %>&category=accessories"
+                    class="block px-4 py-2 rounded-md <%= filters?.category === 'accessories' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200' %>">
+                    Accessories
+                </a>
+            </li>
+            <li>
+                <a href="/products?type=<%= type %>&category=furniture"
+                    class="block px-4 py-2 rounded-md <%= filters?.category === 'furniture' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200' %>">
+                    Furniture
+                </a>
+            </li>
+            <li>
+                <a href="/products?type=<%= type %>&category=miscellaneous"
+                    class="block px-4 py-2 rounded-md <%= filters?.category === 'miscellaneous' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200' %>">
+                    Miscellaneous
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- Filters -->
+    <div class="p-4">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
+        <form method="get" action="/products" class="space-y-4">
+            <!-- Pass active slider option -->
+            <input type="hidden" name="type" value="<%= type %>">
+            
+            <!-- Include selected category -->
+            <input type="hidden" name="category" value="<%= filters?.category || 'all' %>">
+
+            <!-- Sort by -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Sort by</label>
+                <select name="sort" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="newest" <%= filters?.sort === 'newest' ? 'selected' : '' %>>Newest</option>
+                    <option value="oldest" <%= filters?.sort === 'oldest' ? 'selected' : '' %>>Oldest</option>
+                    <option value="price-asc" <%= filters?.sort === 'price-asc' ? 'selected' : '' %>>Price: Low to High</option>
+                    <option value="price-desc" <%= filters?.sort === 'price-desc' ? 'selected' : '' %>>Price: High to Low</option>
+                </select>
+            </div>
+
+            <!-- Price Range -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                <div class="flex space-x-2">
+                    <input type="number" name="minPrice" placeholder="Min" value="<%= filters?.minPrice || '' %>" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <input type="number" name="maxPrice" placeholder="Max" value="<%= filters?.maxPrice || '' %>" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+            </div>
+
+            <!-- Apply Filters -->
+            <div class="flex space-x-2">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md text-sm font-semibold hover:bg-blue-600">Apply Filters</button>
+                <a href="/products?type=<%= type %>" class="w-full bg-gray-300 text-gray-700 py-2 rounded-md text-sm font-semibold hover:bg-gray-400 text-center">Clear Filters</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- Create Lost Item Form -->
+    <div class="pt-20 max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Report a Lost Item</h1>
+        <form action="/submit-lost-item" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <!-- Product Name -->
+            <div>
+                <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+                <input type="text" id="productName" name="productName" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter product name" required>
+            </div>
+
+            <!-- Product Category -->
+            <div>
+                <label for="productCategory" class="block text-sm font-medium text-gray-700">Product Category</label>
+                <select id="productCategory" name="productCategory" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Select a category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Books">Books</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+
+            <!-- Product Common Name -->
+            <div>
+                <label for="productCommonName" class="block text-sm font-medium text-gray-700">Product Common Name</label>
+                <input type="text" id="productCommonName" name="productCommonName" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., Smartphone, Watch, Book">
+            </div>
+
+            <!-- Lost Location -->
+            <div>
+                <label for="lostLocation" class="block text-sm font-medium text-gray-700">Lost Location</label>
+                <input type="text" id="lostLocation" name="lostLocation" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Where did you lose it?" required>
+            </div>
+
+            <!-- Lost Date and Time -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="lostDate" class="block text-sm font-medium text-gray-700">Lost Date</label>
+                    <input 
+                        type="date" 
+                        id="lostDate" 
+                        name="lostDate" 
+                        class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
+                        required 
+                        max="<%= new Date().toISOString().split('T')[0] %>">
+                </div>
+             
+                <div>
+                    <label for="lostTime" class="block text-sm font-medium text-gray-700">Lost Time</label>
+                    <input 
+                        type="time" 
+                        id="lostTime" 
+                        name="lostTime" 
+                        class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
+                        required>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                <input type="text" id="title" name="title" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Provide a catchy title" required>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="description" name="description" rows="4" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Provide a detailed description..." required></textarea>
+            </div>
+
+            <!-- Images -->
+            <div>
+                <label for="images" class="block text-sm font-medium text-gray-700">Images</label>
+                <input type="file" id="images" name="images" class="mt-1 block w-full text-sm text-gray-500" accept="image/*" multiple>
+                <p class="mt-1 text-sm text-gray-500">You can upload multiple images.</p>
+            </div>
+
+            <!-- Additional Details -->
+            <div>
+                <label for="otherDetails" class="block text-sm font-medium text-gray-700">Additional Details (Optional)</label>
+                <textarea id="otherDetails" name="otherDetails" rows="3" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Any other relevant information"></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-end space-x-4">
+                <!-- Cancel Button -->
+                <a href="/products" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 text-center">Cancel</a>
+
+                <!-- Submit Button -->
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

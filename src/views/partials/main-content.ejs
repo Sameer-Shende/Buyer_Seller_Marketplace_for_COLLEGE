@@ -1,0 +1,61 @@
+<div class="main-content-container">
+
+    <div class="product-cards-container">
+        <% if (activeType === 'needed' && products && products.length) { %>
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.images[0] || '/default-image.jpg' %>" alt="<%= product.productName %>" class="product-card-image" />
+                    <div class="product-card-body">
+                        <h3 class="product-card-title"><%= product.productName %></h3>
+                        <p class="product-card-needed-by"><strong>Needed By:</strong> <%= product.neededBy || 'N/A' %></p>
+                        <p class="product-card-description"><%= product.description %></p>
+                        <p class="product-card-willing-to-pay"><strong>Willing to Pay:</strong> ₹<%= product.willingToPayUpto || 'N/A' %></p>
+                        <a href="/needed-product-details/<%= product._id %>" class="product-card-btn">View Details</a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else if (activeType === 'lost' && products && products.length) { %>
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.images[0] || '/default-image.jpg' %>" alt="<%= product.productName %>" class="product-card-image" />
+                    <div class="product-card-body">
+                        <h3 class="product-card-title"><%= product.title %></h3>
+                        <p class="product-card-lost-date"><strong>Lost Date:</strong> <%= product.lostDate || 'N/A' %></p>
+                        <p class="product-card-lost-time"><strong>Lost Time:</strong> <%= product.lostTime || 'N/A' %></p>
+                        <p class="product-card-lost-location"><strong>Lost Location:</strong> <%= product.lostLocation || 'N/A' %></p>
+                        <p class="product-card-owner"><strong>Owner:</strong> <%= product.ownerName || 'N/A' %></p>
+                        <p class="product-card-description"><%= product.description %></p>
+                        <a href="/lost-product-details/<%= product._id %>" class="product-card-btn">View Details</a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else if (activeType === 'buy' && products && products.length) { %>
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.images[0] || '/default-image.jpg' %>" alt="<%= product.productName %>" class="product-card-image" />
+                    <div class="product-card-body">
+                        <h3 class="product-card-title"><%= product.title %></h3>
+                        <p class="product-card-description"><%= product.description %></p>
+                        <% if (type === 'buy' && product.price) { %>
+                            <p class="product-card-price">
+                                <strong>Price:</strong> ₹<%= product.price %>
+                                <% if (product.originalPrice) { %>
+                                    <span class="original-price">(<strike>₹<%= product.originalPrice %></strike>)</span>
+                                <% } %>
+                            </p>
+                        <% } %>
+                        <div class="product-card-status">
+                            <% if (product.usage) { %>
+                                <p><strong>Usage:</strong> <%= product.usage %></p>
+                            <% } %>
+                            <p><strong>Status:</strong> <%= product.status %></p>
+                        </div>
+                        <a href="/buy-product-details/<%= product._id %>" class="product-card-btn">View Details</a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No products available for this category.</p>
+        <% } %>
+    </div>
+</div>

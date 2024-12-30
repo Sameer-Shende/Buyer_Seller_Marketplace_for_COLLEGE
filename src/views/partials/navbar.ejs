@@ -1,0 +1,82 @@
+<nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="#" class="sedgwick-ave-display-regular text-2xl font-bold text-blue-600">Swap It Up</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navbar Links -->
+            <div class="hidden md:flex space-x-4 items-center">
+                <!-- Dropdown: Create a Product -->
+                <div class="relative group">
+                    <button class="px-3 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 focus-within:bg-blue-600">
+                        Create a Product
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition duration-150 ease-in-out">
+                        <a href="/create-product" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Product</a>
+                        <a href="/create-lost-product" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Lost Item</a>
+                        <a href="/create-needed-product" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Needed Item</a>
+                    </div>
+                </div>
+                <!-- Dropdown: My Profile -->
+                <div class="relative group">
+                    <button class="px-3 py-2 bg-gray-200 text-gray-800 rounded-md text-sm hover:bg-gray-300 focus-within:bg-gray-300">
+                        My Profile
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition duration-150 ease-in-out">
+                        <a href="/edit-profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
+                        <a href="/my-items" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Items</a>
+                        <a href="/delete-account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Delete Account</a>
+                        <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden space-y-2 py-4">
+            <!-- Categories & Filters Button -->
+            <div class="border-t border-gray-200">
+                <button id="categories-filters-button" class="w-full text-left px-4 py-2 bg-green-500 text-white rounded-md text-sm">
+                    Categories & Filters
+                </button>
+            </div>
+            <!-- Dropdown: Create a Product -->
+            <div class="border-t border-gray-200">
+                <button class="w-full text-left px-4 py-2 bg-blue-500 text-white rounded-md text-sm" onclick="toggleMenu('create-product-menu')">
+                    Create a Product
+                </button>
+                <div id="create-product-menu" class="hidden pl-4 space-y-1">
+                    <a href="/create-product" class="block px-2 py-1 text-gray-800 hover:bg-gray-100">Product</a>
+                    <a href="/create-lost-product" class="block px-2 py-1 text-gray-800 hover:bg-gray-100">Lost Item</a>
+                    <a href="/create-needed-product" class="block px-2 py-1 text-gray-800 hover:bg-gray-100">Needed Item</a>
+                </div>
+            </div>
+            <!-- Dropdown: My Profile -->
+            <div class="border-t border-gray-200">
+                <button class="w-full text-left px-4 py-2 bg-gray-200 text-gray-800 rounded-md text-sm" onclick="toggleMenu('profile-menu')">
+                    My Profile
+                </button>
+                <div id="profile-menu" class="hidden pl-4 space-y-1">
+                    <a href="/edit-profile" class="block px-2 py-1 text-gray-700 hover:bg-gray-100">Edit Profile</a>
+                    <a href="/my-items" class="block px-2 py-1 text-gray-700 hover:bg-gray-100">My Items</a>
+                    <a href="/delete-account" class="block px-2 py-1 text-gray-700 hover:bg-gray-100">Delete Account</a>
+                    <a href="/logout" class="block px-2 py-1 text-gray-700 hover:bg-gray-100">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script src="javscripts/navbar.js"></script>

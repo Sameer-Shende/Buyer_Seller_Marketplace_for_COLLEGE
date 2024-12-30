@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            display: none; /* Hide initially */
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .back-button {
+            margin-bottom: 20px;
+            padding: 10px;
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/products" class="back-button">Go Back</a>
+        <h1>Edit Profile</h1>
+        
+        <% if (messages.success) { %>
+            <div class="alert alert-success"><%= messages.success %></div>
+        <% } %>
+        <% if (messages.error) { %>
+            <div class="alert alert-error"><%= messages.error %></div>
+        <% } %>
+
+        <form action="/edit-profile" method="POST">
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" name="oldPassword" id="oldPassword" required>
+
+            <label for="name">New Name:</label>
+            <input type="text" name="name" id="name" value="<%= user.name %>" required>
+
+            <label for="password">New Password:</label>
+            <input type="password" name="password" id="password" placeholder="Leave blank to keep unchanged">
+
+            <label for="room">New Room:</label>
+            <input type="text" name="room" id="room" value="<%= user.room %>" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        // Automatically show alerts if they exist
+        const successAlert = document.querySelector('.alert-success');
+        const errorAlert = document.querySelector('.alert-error');
+
+        if (successAlert) successAlert.style.display = 'block';
+        if (errorAlert) errorAlert.style.display = 'block';
+
+        // Automatically dismiss alerts after 5 seconds
+        setTimeout(() => {
+            if (successAlert) successAlert.style.display = 'none';
+            if (errorAlert) errorAlert.style.display = 'none';
+        }, 5000);
+    </script>
+</body>
+</html>

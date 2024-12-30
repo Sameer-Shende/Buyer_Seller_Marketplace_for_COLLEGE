@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- Create Product Form -->
+    <div class="pt-20 max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Create a Product</h1>
+        <form action="/submit-product" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <!-- Product Name -->
+            <div>
+                <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+                <input type="text" id="productName" name="productName" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter product name" required>
+            </div>
+
+            <!-- Product Category -->
+            <div>
+                <label for="productCategory" class="block text-sm font-medium text-gray-700">Product Category</label>
+                <select id="productCategory" name="productCategory" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Select a category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Books">Books</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+
+            <!-- Product Common Name -->
+            <div>
+                <label for="productCommonName" class="block text-sm font-medium text-gray-700">Product Common Name</label>
+                <input type="text" id="productCommonName" name="productCommonName" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., Smartphone, Book, TV" required>
+            </div>
+
+            <!-- Usage -->
+            <div>
+                <label for="usage" class="block text-sm font-medium text-gray-700">Usage</label>
+                <select id="usage" name="usage" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="New">New</option>
+                    <option value="Used">Used</option>
+                </select>
+            </div>
+
+            <!-- Original Price (Only for Used Items) -->
+            <div>
+                <label for="originalPrice" class="block text-sm font-medium text-gray-700">Original Price</label>
+                <input type="number" id="originalPrice" name="originalPrice" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter original price (if used)">
+            </div>
+
+            <!-- Price -->
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                <input type="number" id="price" name="price" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter price" required>
+            </div>
+
+            <!-- Product Images -->
+            <div>
+                <label for="images" class="block text-sm font-medium text-gray-700">Product Images</label>
+                <input type="file" id="images" name="images" class="mt-1 block w-full text-sm text-gray-500" accept="image/*" multiple required>
+                <p class="mt-1 text-sm text-gray-500">You can upload multiple images.</p>
+            </div>
+
+            <!-- Title -->
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                <input type="text" id="title" name="title" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Give a catchy title for your product" required>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="description" name="description" rows="4" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Write a detailed description..." required></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-end space-x-4">
+                <!-- Cancel Button -->
+                <a href="/products" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 text-center">Cancel</a>
+                
+                <!-- Create Product Button -->
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Create Product</button>
+            </div>
+            
+        </form>
+    </div>
+
+</body>
+</html>

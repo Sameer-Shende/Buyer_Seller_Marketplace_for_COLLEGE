@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- Needed Product Details -->
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="max-w-4xl bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Needed Product Details</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Needed Product Image -->
+          <div>
+            <div class="w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="<%= neededProduct.images[0] || '/default-image.jpg' %>" 
+                alt="<%= neededProduct.productName %>" 
+                class="w-full h-full object-contain"
+              >
+            </div>
+          </div>
+
+          <!-- Needed Product Info -->
+          <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4"><%= neededProduct.title %></h2>
+            <p class="mb-2"><strong>Category:</strong> <%= neededProduct.productCategory %></p>
+            <p class="mb-2"><strong>Common Name:</strong> <%= neededProduct.productCommonName %></p>
+            <p class="mb-2"><strong>Description:</strong> <%= neededProduct.description || 'No description provided' %></p>
+            <p class="mb-2"><strong>Needed By:</strong> <%= new Date(neededProduct.neededBy).toLocaleDateString() %></p>
+            <p class="mb-2"><strong>Willing to Pay:</strong> ₹<%= neededProduct.willingToPayUpto || 'N/A' %></p>
+            <p class="mb-2"><strong>Who Needs:</strong> <%= neededProduct.whoNeeds %></p>
+            <p class="mb-2"><strong>Email:</strong> <%= neededProduct.email %></p>
+            <p class="mb-2"><strong>Mobile:</strong> <%= neededProduct.mobile %></p>
+            <p class="mb-2"><strong>Room:</strong> <%= neededProduct.room %></p>
+            <p class="mb-2"><strong>Additional Notes:</strong> <%= neededProduct.additionalNotes || 'No additional notes provided' %></p>
+            <p class="mb-2"><strong>Status:</strong> <%= neededProduct.status %></p>
+          </div>
+        </div>
+
+        <!-- Go Back Button -->
+        <div class="mt-6 text-center">
+          <a href="javascript:history.back()" 
+             class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">
+            Go Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

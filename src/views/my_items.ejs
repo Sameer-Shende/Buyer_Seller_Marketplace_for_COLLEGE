@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #444;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .go-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #007bff;
+            background-color: #f1f1f1;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .go-back:hover {
+            background-color: #ddd;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(33% - 20px);
+            box-sizing: border-box;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .card form {
+            margin-top: 10px;
+        }
+
+        .card button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+            transition: background 0.2s;
+        }
+
+        .card button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/products" class="go-back">&larr; Go Back</a>
+        
+        <% if (messages.success) { %>
+            <div class="alert alert-success" id="flash-message"><%= messages.success %></div>
+        <% } %>
+        <% if (messages.error) { %>
+            <div class="alert alert-error" id="flash-message"><%= messages.error %></div>
+        <% } %>
+
+        <h1>My Items</h1>
+
+        <h2>Products</h2>
+        <div class="card-container">
+            <% products.forEach(product => { %>
+                <div class="card">
+                    <h3><%= product.title %></h3>
+                    <p>Status: <%= product.status %></p>
+                    <p>Price: ₹<%= product.price %></p>
+                    <form action="/update-item-status/<%= product._id %>" method="POST">
+                        <input type="hidden" name="itemType" value="product">
+                        <input type="hidden" name="newStatus" value="<%= product.status === 'Not Sold' ? 'Sold' : 'Not Sold' %>">
+                        <button type="submit">
+                            Mark as <%= product.status === 'Not Sold' ? 'Sold' : 'Not Sold' %>
+                        </button>
+                    </form>
+                    <form action="/delete-item/<%= product._id %>" method="POST">
+                        <input type="hidden" name="itemType" value="product">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+
+        <h2>Lost Items</h2>
+        <div class="card-container">
+            <% lostItems.forEach(item => { %>
+                <div class="card">
+                    <h3><%= item.title %></h3>
+                    <p>Status: <%= item.status %></p>
+                    <form action="/update-item-status/<%= item._id %>" method="POST">
+                        <input type="hidden" name="itemType" value="lostProduct">
+                        <input type="hidden" name="newStatus" value="<%= item.status === 'Not Found' ? 'Found' : 'Not Found' %>">
+                        <button type="submit">
+                            Mark as <%= item.status === 'Not Found' ? 'Found' : 'Not Found' %>
+                        </button>
+                    </form>
+                    <form action="/delete-item/<%= item._id %>" method="POST">
+                        <input type="hidden" name="itemType" value="lostProduct">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+
+        <h2>Needed Items</h2>
+        <div class="card-container">
+            <% neededItems.forEach(item => { %>
+                <div class="card">
+                    <h3><%= item.title %></h3>
+                    <p>Status: <%= item.status %></p>
+                    <form action="/update-item-status/<%= item._id %>" method="POST">
+                        <input type="hidden" name="itemType" value="neededProduct">
+                        <input type="hidden" name="newStatus" value="<%= item.status === 'Needed' ? 'Found' : 'Needed' %>">
+                        <button type="submit">
+                            Mark as <%= item.status === 'Needed' ? 'Found' : 'Needed' %>
+                        </button>
+                    </form>
+                    <form action="/delete-item/<%= item._id %>" method="POST">
+                        <input type="hidden" name="itemType" value="neededProduct">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script>
+        // Remove flash message after 5 seconds
+        setTimeout(() => {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                flashMessage.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

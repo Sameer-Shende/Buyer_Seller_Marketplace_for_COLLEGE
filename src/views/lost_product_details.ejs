@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- Lost Product Details -->
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="max-w-4xl bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Lost Product Details</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Lost Product Image -->
+          <div>
+            <div class="w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="<%= lostProduct.images[0] || '/default-image.jpg' %>" 
+                alt="<%= lostProduct.productName %>" 
+                class="w-full h-full object-contain"
+              >
+            </div>
+          </div>
+
+          <!-- Lost Product Info -->
+          <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4"><%= lostProduct.title %></h2>
+            <p class="mb-2"><strong>Category:</strong> <%= lostProduct.productCategory %></p>
+            <p class="mb-2"><strong>Lost Location:</strong> <%= lostProduct.lostLocation %></p>
+            <p class="mb-2"><strong>Lost Date:</strong> <%= new Date(lostProduct.lostDate).toLocaleDateString() %></p>
+            <p class="mb-2"><strong>Lost Time:</strong> <%= lostProduct.lostTime || 'N/A' %></p>
+            <p class="mb-2"><strong>Owner:</strong> <%= lostProduct.ownerName %></p>
+            <p class="mb-2"><strong>Email:</strong> <%= lostProduct.email %></p>
+            <p class="mb-2"><strong>Mobile:</strong> <%= lostProduct.mobile %></p>
+            <p class="mb-2"><strong>Room:</strong> <%= lostProduct.room %></p>
+            <p class="mb-2"><strong>Additional Details:</strong> <%= lostProduct.additionalDetails || 'N/A' %></p>
+            <p class="mb-2"><strong>Status:</strong> <%= lostProduct.status %></p>
+          </div>
+        </div>
+
+        <!-- Go Back Button -->
+        <div class="mt-6 text-center">
+          <a href="javascript:history.back()" 
+             class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">
+            Go Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
